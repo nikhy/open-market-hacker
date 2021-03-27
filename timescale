@@ -1,0 +1,10 @@
+CREATE TABLE tdb_stock_price_intraday (LIKE stock_price_intraday INCLUDING DEFAULTS INCLUDING CONSTRAINTS INCLUDING INDEXES);
+
+
+CREATE TABLE tdb_stock_price_intraday (LIKE stock_price_intraday INCLUDING DEFAULTS INCLUDING CONSTRAINTS EXCLUDING  INDEXES);
+
+SELECT create_hypertable('tdb_stock_price_intraday', 'timestamp');
+
+select * from tdb_stock_price_intraday 
+
+INSERT INTO tdb_stock_price_intraday SELECT * FROM stock_price_intraday;

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 5px;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .bullish {
+            background: green;
+            color: white;
+        }
+
+        .bearish {
+            background: red;
+            color: white;
+        }
+
+        .float-container {
+            border: 3px solid #fff;
+            padding: 20px;
+            float: left;
+
+        }
+
+        .float-child {
+            float: left;
+            border: 2px solid red;
+        }
+
+        .float-child_2 {
+            display: inline;
+        }
+
+        table {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Technical Scanner</h1>
+    <div class="float-container">
+        <div class="float-child_2">
+            <table>
+                <tr>
+                    <th>symbol</th>
+                    <th>price</th>
+                    <th>diff</th>
+                    <th>per</th>
+                    <th>tv link</th>
+                </tr>
+                {% for stock in stocks1 %}
+                <tr>
+                    <td>
+                        {{ stock['symbol'] }}
+                    </td>
+                    <td>
+                        {{ stock['price'] }}
+                    </td>
+                    <td>
+                        {{ stock['diff']}}
+                    </td>
+                    <td>
+                        {{ stock['per']}}
+                    </td>
+                    <td>
+                        <a href="https://in.tradingview.com/chart?symbol=NSE%3A{{stock['symbol']}}" target="_blank">TV</a>
+                    </td>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="float-container">
+        <div class="float-child_2">
+            <table>
+                <tr>
+                    <th>symbol</th>
+                    <th>price</th>
+                    <th>diff</th>
+                    <th>per</th>
+                    <th>tv link</th>
+                </tr>
+                {% for stock in stocks2 %}
+                <tr>
+                    <td>
+                        {{ stock['symbol'] }}
+                    </td>
+                    <td>
+                        {{ stock['price'] }}
+                    </td>
+                    <td>
+                        {{ stock['diff']}}
+                    </td>
+                    <td>
+                        {{ stock['per']}}
+                    </td>
+                    <td>
+                        <a href="https://in.tradingview.com/chart?symbol=NSE%3A{{stock['symbol']}}" target="_blank">TV</a>
+                    </td>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+    <p>{{curr_time}}</p>
+    </div>
+</body>
+
+</html>

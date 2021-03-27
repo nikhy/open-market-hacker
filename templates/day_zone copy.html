@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: arial;
+            margin: 20px;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .bullish {
+            background: green;
+            color: white;
+        }
+
+        .bearish {
+            background: red;
+            color: white;
+        }
+
+        .float-container {
+            border: 3px solid #fff;
+            padding: 20px;
+        }
+
+        .float-child {
+            width: 50% !important;
+            float: left !important;
+            padding: 10px !important;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Technical Scanner</h1>
+    <div class="float-container">
+        <table class="float-child">
+            <tr>
+                <th>symbol</th>
+                <th>price</th>
+                <th>diff</th>
+                <th>per</th>
+            </tr>
+            {% for stock in stocks %}
+            <tr>
+                <td>
+                    {{ stock['symbol'] }}
+                </td>
+                <td>
+                    {{ stock['price'] }}
+                </td>
+                <td>
+                    {{ stock['diff']}}
+                </td>
+                <td>
+                    {{ stock['per']}}
+                </td>
+                {% endfor %}
+        </table>
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container tv-widget float-child">
+            <div id="tradingview_ee3c8"></div>
+            <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/" rel="noopener"
+                    target="_blank"><span class="blue-text">NSE-ADANIPORTS Chart</span></a> by TradingView</div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+                new TradingView.widget(
+                    {
+                        "width": 980,
+                        "height": 610,
+                        "symbol": "NSE-ADANIPORTS",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "dark",
+                        "style": "9",
+                        "locale": "in",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "watchlist": ({{ stocks| safe }}).map((stock) => `NSE-${stock.symbol}`),
+                    "container_id": "tradingview_ee3c8"
+                }
+            );
+            </script>
+        </div>
+    </div>
+    <!-- TradingView Widget END -->
+</body>
+
+</html>
